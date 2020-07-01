@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   namespace: devops
   labels:
-    app: wordpress
+    aworkload.user.cattle.io/workloadselector: deployment-devops-mysql
   name: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      workload.user.cattle.io/workloadselector: deployment-devops-wordpress
+      workload.user.cattle.io/workloadselector: deployment-devops-mysql
   template:
     metadata:
       labels:
-        app: wordpress
+        workload.user.cattle.io/workloadselector: deployment-devops-mysql
     spec:
       containers:
       - env:
@@ -42,7 +42,7 @@ kind: Service
 metadata:
   namespace: devops
   labels:
-    app: wordpress
+    workload.user.cattle.io/workloadselector: deployment-devops-mysql
   name: mysql
 spec:
   ports:
@@ -61,7 +61,7 @@ kind: Deployment
 metadata:
   namespace: devops
   labels:
-    app: wordpress
+    workload.user.cattle.io/workloadselector: deployment-devops-wordpress
   name: wordpress
 spec:
   replicas: 1
@@ -71,7 +71,7 @@ spec:
   template:
     metadata:
       labels:
-        app: wordpress
+        workload.user.cattle.io/workloadselector: deployment-devops-wordpress
     spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
@@ -104,7 +104,7 @@ kind: Service
 metadata:
   namespace: devops
   labels:
-    app: wordpress
+    workload.user.cattle.io/workloadselector: deployment-devops-wordpress
   name: wordpress
 spec:
   externalTrafficPolicy: Cluster
@@ -124,7 +124,7 @@ kind: Ingress
 metadata:
   namespace: devops
   labels:
-    app: wordpress
+    workload.user.cattle.io/workloadselector: deployment-devops-wordpress
   name: wordpress
 spec:
   rules:
