@@ -124,16 +124,18 @@ kind: Ingress
 metadata:
   namespace: devops
   labels:
-    workload.user.cattle.io/workloadselector: deployment-devops-wordpress
-  name: wordpress
+    cattle.io/creator: norman  name: wordpress
 spec:
   rules:
   - host: wordpress.devops.192.168.57.100.xip.io
     http:
       paths:
       - backend:
-          serviceName: wordpress
+          serviceName: wordpress-nodeport
           servicePort: 80
         path: /
 status:
-  loadBalancer: {}
+  loadBalancer:
+    ingress:
+    - ip: 192.168.57.100
+    - ip: 192.168.57.101
