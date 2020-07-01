@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      workload.user.cattle.io/workloadselector: deployment-devops-wordpress
   template:
     metadata:
       labels:
@@ -67,7 +67,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      workload.user.cattle.io/workloadselector: deployment-devops-wordpress
   template:
     metadata:
       labels:
