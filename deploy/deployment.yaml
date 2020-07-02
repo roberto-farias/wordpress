@@ -124,7 +124,8 @@ kind: Ingress
 metadata:
   namespace: devops
   labels:
-    cattle.io/creator: norman  name: wordpress
+    cattle.io/creator: norman
+  name: wordpress
 spec:
   rules:
   - host: wordpress.devops.192.168.57.100.xip.io
